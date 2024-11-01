@@ -1,14 +1,15 @@
 <script>
-   import FlexShow from "./lib/FlexShow.svelte";
+  import Comp1 from "./lib/Comp1.svelte";
+  import Comp2 from "./lib/Comp2.svelte";
+  import TopMenu from "./lib/TopMenu.svelte";
+  import FlexShow from "./lib/FlexShow.svelte";
+  import AnimeGif from "./lib/AnimeGif.svelte";
+  import { display } from "./lib/select_values.svelte";
+  import { flex_direction } from "./lib/select_values.svelte";
+  import { just_content } from "./lib/select_values.svelte";
 
-  //массивы для select'ов убрать в модуль и импортировать
-  import { display  } from "./lib/select_values.svelte";
-  import  {flex_direction} from "./lib/select_values.svelte";
-  import {just_content} from "./lib/select_values.svelte"
+  import DetectMessage from './lib/Detector.svelte'
 
-  // let disp_selected = $state("block");
-  // let direct_selected = $state("row");
-  // let just_content_selected = $state("flex-start");
 
   // Объект для биндинга выбранных в select'ах значений
   let flexvals = $state({
@@ -20,7 +21,8 @@
 </script>
 
 <main>
-  <div>
+
+  <div class="container">
     <h1>START</h1>
 
     <div class="combos">
@@ -56,33 +58,61 @@
     </div>
 
     <div>
-      <!-- Оптимизация кода 1 -->
-      <!-- <FlexShow
-        --disp={disp_selected}
-        --direct={direct_selected}
-        --justcont={just_content_selected}
-        display={disp_selected}
-        flex_dir={direct_selected}
-        just_cont={just_content_selected}
-      
-      <!-- Оптимизация кода 2 -->
-      <!-- <FlexShow
-      display={disp_selected}
-      flex_dir={direct_selected}
-      just_cont={just_content_selected}
-    /> -->
-      <!-- Оптимизация кода 3 -->
       <FlexShow selected={flexvals} />
+      <AnimeGif />
     </div>
   </div>
 </main>
 
 <style>
-  .combos {
-    display: flex;
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif; /* Используем округлый шрифт */
   }
+
   main {
     display: flex;
     justify-content: center;
+    align-items: center;
+    height: 100vh; /* Занимает всю высоту экрана */
+    background-color: #f7f7f7; /* Светлый фон для всего приложения */
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff; /* Белый фон */
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .combos {
+    display: flex;
+    gap: 10px; /* Промежутки между селектами */
+    margin-bottom: 20px; /* Отступ снизу */
+  }
+
+  select {
+    padding: 10px;
+    border: 2px solid #333; /* Темная граница */
+    border-radius: 10px; /* Округлые углы */
+    background-color: #f7f7f7; /* Светло-серый фон для селектов */
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+  }
+
+  select:hover {
+    border-color: #555; /* Изменение цвета границы при наведении */
+  }
+
+  h1 {
+    margin-bottom: 20px; /* Отступ снизу для заголовка */
+    color: #333; /* Темный цвет для заголовка */
   }
 </style>
